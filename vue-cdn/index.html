@@ -8,12 +8,22 @@
   <body>
     <div id="app">
         <!-- Dynamic -->
-        <input v-model="max" />
+        <input v-model="maximum" />
 
         <!-- static -->
-        <input :value="max" />
+        <input :value="maximum" />
+        <span>{{ name }}</span>
+        <p v-html="name"></p>
+        <p v-once="name">
+          <span>{{ name }}</span>
+        </p>
+        <textarea v-model="name"></textarea>
+        <span>{{ cart.length }}</span>
+        <input v-model="slugText" />
+        <span>{{ slugitize }}</span>
       <div v-for="item in products"
-      v-if="item.price <= Number(max)">
+      v-if="item.price <= Number(maximum)">
+      <button v-on:click="addItems(item)">ADD ITEM</button>
         <img
           v-bind:src="item.image"
           :alt="item.name"

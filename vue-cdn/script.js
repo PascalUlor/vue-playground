@@ -6,7 +6,7 @@
 //   }
 
 let dataArray = {
-    max: 99,
+    maximum: 99,
     products : [
      {
        "id": "532",
@@ -33,10 +33,33 @@ let dataArray = {
     ]
    }
    
-
+// Note: v-bind is used to manipulate html attributes
 new Vue({
     el: '#app',
-    data: dataArray
+    data: {
+      maximum: 99,
+      products: null,
+      cart: [],
+      name: 'The flash',
+      slugText: 'DC comics summit'
+    },
+    // compute properties runs once and is not rerendered
+    computed: {
+      slugitize: function(){
+        return this.slugText.toLowerCase()
+      }
+    },
+    // methods properties are rerendered
+    methods: {
+      addItems(item){
+        this.cart.push(item);
+      }
+    },
+    mounted: function() {
+      fetch(`https://hplussport.com/api/products/order/price`)
+      .then(res=> res.json())
+      .then(data => this.products = data);
+    }
 });
 
 // new Vue({
