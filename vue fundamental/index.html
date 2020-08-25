@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue CDN demo</title>
+  </head>
+  <body>
+    <div id="app">
+        <!-- Dynamic -->
+        <input v-model="maximum" />
+
+        <!-- static -->
+        <input :value="maximum" />
+        <span>{{ name }}</span>
+        <p v-html="name"></p>
+        <p v-once="name">
+          <span>{{ name }}</span>
+        </p>
+        <textarea v-model="name"></textarea>
+        <span>{{ cart.length }}</span>
+        <input v-model="slugText" />
+        <span>{{ slugitize }}</span>
+      <div v-for="item in products"
+      v-if="item.price <= Number(maximum)">
+      <button v-on:click="addItems(item)">ADD ITEM</button>
+        <img
+          v-bind:src="item.image"
+          :alt="item.name"
+          height="100"
+          width="100"
+        />
+        <p>{{ item.name }}</p>
+        <p>{{ item.description }}</p>
+        <p>${{ item.price }}</p>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript" src="./script.js"></script>
+  </body>
+</html>
